@@ -21,7 +21,11 @@ export const action = async ({request})=>{
 };
 
 const Newsletter = () => {
-    return <Form className="form" method='POST'>
+    const navigation = useNavigation();
+    const isSubmitting = navigation.state === 'submitting';
+    return (
+    
+    <Form className="form" method='POST'>
         <h4 style={{textAlign:'center', marginBottom: '2rem'}}>
             our newsletter
         </h4>
@@ -69,9 +73,11 @@ const Newsletter = () => {
             type="submit" 
             className="btn btn-block" 
             stlye={{marginTop: '0.5rem'}}
+            disabled={isSubmitting}
         >
-            submit
+            {isSubmitting ? 'submitting' : 'submit'}
         </button>
     </Form>
+    );
 };
 export default Newsletter;
